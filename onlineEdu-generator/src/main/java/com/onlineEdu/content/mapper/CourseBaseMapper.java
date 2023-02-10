@@ -1,8 +1,7 @@
 package com.onlineEdu.content.mapper;
 
-import com.onlineEdu.content.model.po.CourseBase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.springframework.stereotype.Repository;
+import com.onlineEdu.content.model.po.CourseBase;
 
 /**
  * <p>

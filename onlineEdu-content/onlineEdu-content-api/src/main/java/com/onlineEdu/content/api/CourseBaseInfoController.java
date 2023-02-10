@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author Astronaut
  * @version 1.0
- * @description 
+ * @description
  * @date 2022/10/7 16:22
  */
 @Api(value = "课程管理接口", tags = "课程管理接口")

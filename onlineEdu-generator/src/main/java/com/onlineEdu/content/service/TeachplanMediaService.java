@@ -1,11 +1,11 @@
 package com.onlineEdu.content.service;
 
-import com.onlineEdu.content.model.po.TeachplanMedia;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.onlineEdu.content.model.po.TeachplanMedia;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Astronaut

@@ -1,12 +1,11 @@
 package com.onlineEdu.content.mapper;
 
-import com.onlineEdu.content.model.po.TeachplanMedia;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.springframework.stereotype.Repository;
+import com.onlineEdu.content.model.po.TeachplanMedia;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Astronaut

@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author Astronaut
  * @version 1.0
- * @description 
+ * @description
  * @date 2022/10/7 16:08
  */
 @Data

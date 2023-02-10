@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author Astronaut
  * @version 1.0
- * @description 
+ * @description
  * @date 2022/10/8 9:00
  */
 @Configuration
