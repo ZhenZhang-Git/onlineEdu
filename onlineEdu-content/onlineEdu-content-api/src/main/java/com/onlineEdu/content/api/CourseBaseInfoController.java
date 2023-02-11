@@ -4,15 +4,15 @@ import com.onlineEdu.base.model.PageParams;
 import com.onlineEdu.base.model.PageResult;
 import com.onlineEdu.content.model.dto.AddCourseDto;
 import com.onlineEdu.content.model.dto.CourseBaseInfoDto;
+import com.onlineEdu.content.model.dto.EditCourseDto;
 import com.onlineEdu.content.model.dto.QueryCourseParamsDto;
 import com.onlineEdu.content.model.po.CourseBase;
 import com.onlineEdu.content.service.CourseBaseInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Astronaut
@@ -38,7 +38,7 @@ public class CourseBaseInfoController {
 
     @ApiOperation("新增课程")
     @PostMapping("/course")
-    public CourseBaseInfoDto createCourseBase(@RequestBody AddCourseDto addCourseDto) {
+    public CourseBaseInfoDto createCourseBase(@RequestBody @Validated AddCourseDto addCourseDto) {
 
         //获取当前用户所属培训机构的id
         Long companyId = 22L;
@@ -48,4 +48,17 @@ public class CourseBaseInfoController {
         return courseBase;
     }
 
+    @GetMapping("/course/{courseId}")
+    public CourseBaseInfoDto getCourseBaseById(@PathVariable Long courseId) {
+
+
+        return courseBaseInfoService.getCourseBaseInfo(courseId);
+    }
+
+    @PutMapping("/course")
+    public CourseBaseInfoDto modifyCourseBase(@RequestBody EditCourseDto dto) {
+
+        Long companyId = 1232141425L;
+        return courseBaseInfoService.updateCourseBase(companyId, dto);
+    }
 }

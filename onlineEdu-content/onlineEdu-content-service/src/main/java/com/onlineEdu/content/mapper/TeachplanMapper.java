@@ -1,8 +1,11 @@
 package com.onlineEdu.content.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.onlineEdu.content.model.dto.TeachplanDto;
 import com.onlineEdu.content.model.po.Teachplan;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TeachplanMapper extends BaseMapper<Teachplan> {
 
+    List<TeachplanDto> selectTreeNodes(Long courseId);
 }

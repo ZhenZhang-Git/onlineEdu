@@ -58,6 +58,4 @@ public class TeachplanMedia implements Serializable {
      * 修改人
      */
     private String changePeople;
-
-
 }
