@@ -3,7 +3,7 @@ POST {{content_host}}/content/course/list?pageNo=1&pageSize=2
 Content-Type: application/json
 
 {
-  "auditStatus": "202004",
+  "auditStatus": "",
   "courseName": "",
   "publishStatus": ""
 }
@@ -11,26 +11,27 @@ Content-Type: application/json
 ### 课程分类 查询
 GET {{content_host}}/content/course-category/tree-nodes
 
-### 新增课程
+### 创建课程
 POST {{content_host}}/content/course
 Content-Type: application/json
 
 {
   "mt": "1-1",
   "st": "1-1-1",
-  "name": "测试课程112",
-  "pic": "",
+  "name": "",
+  "pic": "fdsfdsfds",
   "teachmode": "200002",
-  "users": "初级人员",
-  "tags": "标签",
+  "users": "初级人员初级人员初级人员",
+  "tags": "课程标签",
   "grade": "204001",
-  "description": "课程介绍",
+  "description": "课程描述",
+  "objectives": "objectivesobjectivesobjectives",
   "charge": "201001",
-  "price": "",
-  "originalPrice": "",
+  "price": 100,
+  "originalPrice":200,
   "qq": "43232",
-  "wechat": "4324322",
-  "phone": "432432",
+  "wechat": "3re",
+  "phone": "3232",
   "validDays": 365
 }
 

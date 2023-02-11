@@ -5,11 +5,12 @@ import com.onlineEdu.base.model.PageParams;
 import com.onlineEdu.base.model.PageResult;
 import com.onlineEdu.content.model.dto.AddCourseDto;
 import com.onlineEdu.content.model.dto.CourseBaseInfoDto;
+import com.onlineEdu.content.model.dto.EditCourseDto;
 import com.onlineEdu.content.model.dto.QueryCourseParamsDto;
 import com.onlineEdu.content.model.po.CourseBase;
 
 /**
- * @author Mr.M
+ * @author Astronaut
  * @version 1.0
  * @description 课程管理service
  * @date 2022/10/8 9:44
@@ -22,7 +23,7 @@ public interface CourseBaseInfoService {
      * @param queryCourseParamsDto 查询条件
      * @return com.onlineEdu.base.model.PageResult<com.onlineEdu.content.model.po.CourseBase>
      * @description 课程查询
-     * @author Mr.M
+     * @author Astronaut
      * @date 2022/10/8 9:46
      */
     public PageResult<CourseBase> queryCourseBaseList(PageParams params, QueryCourseParamsDto queryCourseParamsDto);
@@ -35,4 +36,8 @@ public interface CourseBaseInfoService {
      * @return 课程信息包括基本信息、营销信息
      */
     public CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto addCourseDto);
+
+    CourseBaseInfoDto getCourseBaseInfo(Long courseId);
+
+    CourseBaseInfoDto updateCourseBase(Long companyId, EditCourseDto dto);
 }
