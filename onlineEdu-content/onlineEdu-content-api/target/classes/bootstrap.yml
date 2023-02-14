@@ -1,21 +1,25 @@
-server:
-  servlet:
-    context-path: /content
-  port: 63040
-
-#\u5FAE\u670D\u52A1\u914D\u7F6E
 spring:
   application:
     name: content-api
-
-# \u65E5\u5FD7\u6587\u4EF6\u914D\u7F6E\u8DEF\u5F84
-logging:
-  config: classpath:log4j2-dev.xml
-
-# swagger \u6587\u6863\u914D\u7F6E
-swagger:
-  title: "\u5B66\u6210\u5728\u7EBF\u5185\u5BB9\u7BA1\u7406\u7CFB\u7EDF"
-  description: "\u5185\u5BB9\u7CFB\u7EDF\u7BA1\u7406\u7CFB\u7EDF\u5BF9\u8BFE\u7A0B\u76F8\u5173\u4FE1\u606F\u8FDB\u884C\u4E1A\u52A1\u7BA1\u7406\u6570\u636E"
-  base-package: com.onlineEdu.content
-  enabled: true
-  version: 1.0.0
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        namespace: onlineEdu-dev
+        group: onlineEdu
+      config:
+        namespace: onlineEdu-dev
+        group: onlineEdu
+        file-extension: yaml
+        refresh-enabled: true
+        extension-configs:
+          - data-id: content-service-${spring.profiles.active}.yaml
+            group: onlineEdu
+            refresh: true
+        shared-configs:
+          - data-id: common-${spring.profiles.active}.yaml
+            group: onlineEdu
+            refresh: true
+  #profiles默认为dev
+  profiles:
+    active: dev
