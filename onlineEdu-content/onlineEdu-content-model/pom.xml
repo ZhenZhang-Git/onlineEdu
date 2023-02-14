@@ -6,7 +6,6 @@
         <groupId>com.onlineEdu</groupId>
         <artifactId>onlineEdu-content</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>onlineEdu-content-model</artifactId>
