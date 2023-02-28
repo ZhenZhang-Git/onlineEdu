@@ -1,8 +1,10 @@
 package com.onlineEdu.media.api;
 
+
 import com.onlineEdu.base.exception.OnlineEduException;
 import com.onlineEdu.base.model.PageParams;
 import com.onlineEdu.base.model.PageResult;
+import com.onlineEdu.base.model.RestResponse;
 import com.onlineEdu.media.model.dto.QueryMediaParamsDto;
 import com.onlineEdu.media.model.dto.UploadFileParamsDto;
 import com.onlineEdu.media.model.dto.UploadFileResultDto;
@@ -32,7 +34,6 @@ public class MediaFilesController {
     public PageResult<MediaFiles> list(PageParams pageParams, @RequestBody QueryMediaParamsDto queryMediaParamsDto) {
         Long companyId = 1232141425L;
         return mediaFileService.queryMediaFiels(companyId, pageParams, queryMediaParamsDto);
-
     }
 
     @RequestMapping(value = "/upload/coursefile", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -45,7 +46,7 @@ public class MediaFilesController {
         String contentType = filedata.getContentType();
         uploadFileParamsDto.setContentType(contentType);
         uploadFileParamsDto.setFileSize(filedata.getSize());//文件大小
-        if (contentType.indexOf("image") >= 0) {
+        if (contentType.contains("image")) {
             //是个图片
             uploadFileParamsDto.setFileType("001001");
         } else {
@@ -62,4 +63,11 @@ public class MediaFilesController {
         return uploadFileResultDto;
     }
 
+    @ApiOperation("预览文件")
+    @GetMapping("/preview/{mediaId}")
+    public RestResponse<String> getPlayUrlByMediaId(@PathVariable String mediaId){
+        //调用service查询文件的url
+        MediaFiles mediaFiles = mediaFileService.getFileById(mediaId);
+        return RestResponse.success(mediaFiles.getUrl());
+    }
 }

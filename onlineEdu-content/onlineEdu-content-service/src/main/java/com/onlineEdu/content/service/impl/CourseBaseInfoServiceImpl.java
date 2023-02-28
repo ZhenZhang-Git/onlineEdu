@@ -2,7 +2,7 @@ package com.onlineEdu.content.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.onlineEdu.base.exception.OnlineEduExpection;
+import com.onlineEdu.base.exception.OnlineEduException;
 import com.onlineEdu.base.model.PageParams;
 import com.onlineEdu.base.model.PageResult;
 import com.onlineEdu.content.mapper.CourseBaseMapper;
@@ -164,12 +164,12 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         Long id = dto.getId();
         CourseBase courseBase = courseBaseMapper.selectById(id);
         if (courseBase == null) {
-            OnlineEduExpection.cast("课程不存在");
+            OnlineEduException.cast("课程不存在");
         }
 
         //校验本机构只能修改本机构的课程
         if (!courseBase.getCompanyId().equals(companyId)) {
-            OnlineEduExpection.cast("本机构只能修改本机构的课程");
+            OnlineEduException.cast("本机构只能修改本机构的课程");
         }
 
         //封装基本信息的数据
@@ -196,11 +196,11 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
     private int saveCourseMarket(CourseMarket courseMarket) {
         String charge = courseMarket.getCharge();
         if (StringUtils.isBlank(charge)) {
-            OnlineEduExpection.cast("收费规则没有选择");
+            OnlineEduException.cast("收费规则没有选择");
         }
         if (charge.equals("201001")) {
             if (courseMarket.getPrice() == null || courseMarket.getPrice().floatValue() <= 0) {
-                OnlineEduExpection.cast("课程为收费价格不能为空且必须大于0");
+                OnlineEduException.cast("课程为收费价格不能为空且必须大于0");
 
             }
         }

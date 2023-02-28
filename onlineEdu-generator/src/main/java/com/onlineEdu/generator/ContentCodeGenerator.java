@@ -14,25 +14,23 @@ import java.util.Arrays;
  * MyBatis-Plus 代码生成类
  */
 public class ContentCodeGenerator {
-
     //  修改服务名以及数据表名
-    private static final String SERVICE_NAME = "content";
-
+    private static final String SERVICE_NAME = "onlineEdu_content";
     //数据库账号
     private static final String DATA_SOURCE_USER_NAME = "root";
     //数据库密码
     private static final String DATA_SOURCE_PASSWORD = "mysql";
     //生成的表
     private static final String[] TABLE_NAMES = new String[]{
-//			"mq_message",
-//			"mq_message_history"
+			"mq_message",
+			"mq_message_history",
             "course_base",
             "course_market",
             "teachplan",
             "teachplan_media",
             "course_teacher",
-//			"course_publish",
-//			"course_publish_pre"
+			"course_publish",
+			"course_publish_pre",
             "course_category"
     };
 
@@ -111,5 +109,4 @@ public class ContentCodeGenerator {
 
         mpg.execute();
     }
-
 }

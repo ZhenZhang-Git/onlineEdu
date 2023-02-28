@@ -1,8 +1,10 @@
 package com.onlineEdu.content.service;
 
 
+import com.onlineEdu.content.model.dto.BindTeachplanMediaDto;
 import com.onlineEdu.content.model.dto.SaveTeachplanDto;
 import com.onlineEdu.content.model.dto.TeachplanDto;
+import com.onlineEdu.content.model.po.TeachplanMedia;
 
 import java.util.List;
 
@@ -30,4 +32,7 @@ public interface TeachplanService {
     void moveUp(Long teachplanId);
 
     void moveDown(Long teachplanId);
+
+    TeachplanMedia associationMedia(BindTeachplanMediaDto bindTeachplanMediaDto);
 }
+

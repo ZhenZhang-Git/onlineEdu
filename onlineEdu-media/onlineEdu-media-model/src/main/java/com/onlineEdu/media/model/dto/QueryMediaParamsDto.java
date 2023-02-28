@@ -13,7 +13,6 @@ import lombok.ToString;
 @Data
 @ToString
 public class QueryMediaParamsDto {
-
     @ApiModelProperty("媒资文件名称")
     private String filename;
     @ApiModelProperty("媒资类型")

@@ -3,11 +3,10 @@ package com.onlineEdu.base.exception;
 /**
  * @author Astronaut
  * @version 1.0
- * @description 
+ * @description
  * @date 2022/10/10 9:14
  */
 public class OnlineEduException extends RuntimeException {
-
     private String errMessage;
 
     public OnlineEduException() {
@@ -19,14 +18,15 @@ public class OnlineEduException extends RuntimeException {
         this.errMessage = message;
     }
 
-    public String getErrMessage(){
+    public String getErrMessage() {
         return errMessage;
     }
 
-    public static void cast(String errMessage){
+    public static void cast(String errMessage) {
         throw new OnlineEduException(errMessage);
     }
-    public static void cast(CommonError commonError){
+
+    public static void cast(CommonError commonError) {
         throw new OnlineEduException(commonError.getErrMessage());
     }
 }

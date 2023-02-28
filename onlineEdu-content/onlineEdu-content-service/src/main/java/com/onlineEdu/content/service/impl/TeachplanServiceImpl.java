@@ -1,16 +1,22 @@
 package com.onlineEdu.content.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.onlineEdu.base.exception.OnlineEduException;
 import com.onlineEdu.content.mapper.TeachplanMapper;
+import com.onlineEdu.content.mapper.TeachplanMediaMapper;
+import com.onlineEdu.content.model.dto.BindTeachplanMediaDto;
 import com.onlineEdu.content.model.dto.SaveTeachplanDto;
 import com.onlineEdu.content.model.dto.TeachplanDto;
 import com.onlineEdu.content.model.po.Teachplan;
+import com.onlineEdu.content.model.po.TeachplanMedia;
 import com.onlineEdu.content.service.TeachplanService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,6 +31,9 @@ public class TeachplanServiceImpl implements TeachplanService {
 
     @Autowired
     TeachplanMapper teachplanMapper;
+
+    @Autowired
+    TeachplanMediaMapper teachplanMediaMapper;
 
     @Override
     public List<TeachplanDto> findTeachplanTree(Long courseId) {
@@ -91,6 +100,38 @@ public class TeachplanServiceImpl implements TeachplanService {
             teachplan.setOrderby(orderby-1);
             teachplanMapper.updateById(teachplan);
         }
+    }
+
+    @Transactional
+    @Override
+    public TeachplanMedia associationMedia(BindTeachplanMediaDto bindTeachplanMediaDto) {
+        //教学计划的id
+        Long teachplanId = bindTeachplanMediaDto.getTeachplanId();
+        Teachplan teachplan = teachplanMapper.selectById(teachplanId);
+        //约束校验
+        //教学计划不存在无法绑定
+        if(teachplan == null){
+            OnlineEduException.cast("教学计划不存在");
+        }
+        //只有二级目录才可以绑定视频
+        Integer grade = teachplan.getGrade();
+        if(grade != 2){
+            OnlineEduException.cast("只有二级目录才可以绑定视频");
+        }
+
+        //删除原来的绑定关系
+        LambdaQueryWrapper<TeachplanMedia> lambdaQueryWrapper = new LambdaQueryWrapper<TeachplanMedia>().eq(TeachplanMedia::getTeachplanId, teachplanId);
+        teachplanMediaMapper.delete(lambdaQueryWrapper);
+
+        //添加新的绑定关系
+        TeachplanMedia teachplanMedia = new TeachplanMedia();
+        teachplanMedia.setTeachplanId(teachplanId);
+        teachplanMedia.setMediaFilename(bindTeachplanMediaDto.getFileName());
+        teachplanMedia.setMediaId(bindTeachplanMediaDto.getMediaId());
+        teachplanMedia.setCreateDate(LocalDateTime.now());
+        teachplanMedia.setCourseId(teachplan.getCourseId());
+        teachplanMediaMapper.insert(teachplanMedia);
+        return teachplanMedia;
     }
 
     //计算机新课程计划的orderby 找到同级课程计划的数量 SELECT count(1) from teachplan where course_id=117 and parentid=268

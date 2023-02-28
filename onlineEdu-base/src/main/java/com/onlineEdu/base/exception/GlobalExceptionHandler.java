@@ -22,9 +22,9 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     //处理OnlineEduExpection异常  此类异常是程序员主动抛出的，可预知异常
-    @ExceptionHandler(OnlineEduExpection.class)//此方法捕获OnlineEduExpection异常
+    @ExceptionHandler(OnlineEduException.class)//此方法捕获OnlineEduExpection异常
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)//状态码返回500
-    public RestErrorResponse doOnlineEduExpection(OnlineEduExpection e) {
+    public RestErrorResponse doOnlineEduExpection(OnlineEduException e) {
 
         log.error("捕获异常：{}", e.getErrMessage());
         e.printStackTrace();
