@@ -49,7 +49,6 @@ public class MqMessageServiceImpl extends ServiceImpl<MqMessageMapper, MqMessage
         }else{
             return null;
         }
-
     }
 
     @Transactional

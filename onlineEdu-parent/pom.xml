@@ -30,7 +30,7 @@
         <commons-lang3.version>3.10</commons-lang3.version>
         <okhttp.version>4.8.1</okhttp.version>
         <swagger-spring-boot-starter.version>1.9.0.RELEASE</swagger-spring-boot-starter.version>
-        <elasticsearch.version>8.6.1</elasticsearch.version>
+        <elasticsearch-java.version>8.6.2</elasticsearch-java.version>
     </properties>
 
     <dependencyManagement>
@@ -171,14 +171,9 @@
                 <version>${swagger-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.elasticsearch.client</groupId>
-                <artifactId>elasticsearch-rest-high-level-client</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.elasticsearch</groupId>
-                <artifactId>elasticsearch</artifactId>
-                <version>${elasticsearch.version}</version>
+                <groupId>co.elastic.clients</groupId>
+                <artifactId>elasticsearch-java</artifactId>
+                <version>${elasticsearch-java.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

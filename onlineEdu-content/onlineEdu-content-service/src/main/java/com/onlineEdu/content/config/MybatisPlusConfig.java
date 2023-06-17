@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.onlineEdu.content.mapper")
 public class MybatisPlusConfig {
 
-
     //定义分页的拦截器
     @Bean
     public MybatisPlusInterceptor getMybatisPlusInterceptor() {
